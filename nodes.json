@@ -1,16 +1,7 @@
 {
     "nodes": [
         {
-            "address": "lisish-ha",
-            "times_available": 2,
-            "availability": 100.0
-        },
-        {
-            "address": "lisish-rpi-papycast",
-            "times_available": 2,
-            "availability": 100.0
+            "address": "YOUR-NODE"
         }
-    ],
-    "interval": 10,
-    "runs": 2
+    ]
 }
