@@ -1,6 +1,5 @@
 import os
 import json
-import time
 
 FILE_NODES = "./nodes.json"
 
@@ -15,7 +14,7 @@ with open(FILE_NODES, "r+") as f:
         report["runs"] += 1
 
     for node in report["nodes"]:
-        print("<I> Checking node: " + node["address"])
+        os.run("logger \"[node-monitor] <I> Checking node: " + node["address"] + "\"")
 
         if report["runs"] == 1:
             node["times_available"] = 0
@@ -25,16 +24,16 @@ with open(FILE_NODES, "r+") as f:
         p_out = p.read()
 
         if "time=" in p_out:
-            print("<I> Node available: " + node["address"] + "\n")
+            os.run("logger \"[node-monitor] <I> Node available: " + node["address"] + "\"")
 
             node["times_available"] += 1
         else:
-            print("<I> Node unavailable: " + node["address"] + "\n")
+            os.run("logger \"[node-monitor] <I> Node unavailable: " + node["address"] + "\"")
 
         node["availability"] = (node["times_available"] / report["runs"]) * 100
 
 with open(FILE_NODES, "w+") as f:
-    print("<I> Writing report...\n")
+    os.run("logger \"[node-monitor] <I> Writing report...\"")
 
     f.write("")
     f.write(json.dumps(report, indent = 4))
