@@ -8,15 +8,15 @@ report = None
 with open(FILE_NODES, "r+") as f:
     report = json.load(f)
 
-    if "runs" not in report:
-        report["runs"] = 1
-    else:
-        report["runs"] += 1
-
     for node in report["nodes"]:
+        if "runs" not in node:
+            node["runs"] = 1
+        else:
+            node["runs"] += 1
+
         os.system("logger \"[node-monitor] <I> Checking node: " + node["address"] + "\"")
 
-        if report["runs"] == 1:
+        if node["runs"] == 1 or "times_available" not in node:
             node["times_available"] = 0
 
         p = os.popen("ping -c 2 " + node["address"])
@@ -30,7 +30,7 @@ with open(FILE_NODES, "r+") as f:
         else:
             os.system("logger \"[node-monitor] <I> Node unavailable: " + node["address"] + "\"")
 
-        node["availability"] = (node["times_available"] / report["runs"]) * 100
+        node["availability"] = (node["times_available"] / node["runs"]) * 100
 
 with open(FILE_NODES, "w+") as f:
     os.system("logger \"[node-monitor] <I> Writing report...\"")
