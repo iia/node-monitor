@@ -1,7 +1,10 @@
 <html>
-    <title>
-        Node Availability Report
-    </title>
+    <head>
+        <meta http-equiv="refresh" content="30">
+        <title>
+            Node Availability Report
+        </title>
+    </head>
     <body>
         <table>
             %for key in template_data:
