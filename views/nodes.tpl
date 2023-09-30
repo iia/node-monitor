@@ -9,10 +9,10 @@
         <table>
             %for key in template_data:
             <tr>
-                <td>
+                <td color="orange">
                     <strong>{{key}}</strong>
                 </td>
-                <td>
+                <td color="purple">
                     {{template_data[key]}}
                 </td>
             </tr>
