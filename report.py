@@ -30,7 +30,7 @@ with open(FILE_NODES, "r+") as f:
         else:
             os.system("logger \"[node-monitor] <I> Node unavailable: " + node["address"] + "\"")
 
-        node["availability"] = (node["times_available"] / node["runs"]) * 100
+        node["availability"] = round((node["times_available"] / node["runs"]) * 100)
 
 with open(FILE_NODES, "w+") as f:
     os.system("logger \"[node-monitor] <I> Writing report...\"")
