@@ -10,7 +10,7 @@
             %for key in template_data:
             <tr>
                 <td>
-                    {{key}}
+                    <strong>{{key}}</strong>
                 </td>
                 <td>
                     {{template_data[key]}}
